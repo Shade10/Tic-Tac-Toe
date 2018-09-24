@@ -16,11 +16,11 @@ $(document).ready(function () {
     movesMadeOnBoard++;
 
     if (currentTurn === 1) {
-      event.target.innerHTML = playerX;
+      event.target.innerText = playerX;
       event.target.style.color = 'red';
       currentTurn++;
     } else {
-      event.target.innerHTML = playerO;
+      event.target.innerText = playerO;
       event.target.style.color = 'goldenrod';
       currentTurn--;
     }
@@ -36,7 +36,7 @@ $(document).ready(function () {
     if (movesMadeOnBoard > 4) {
       var movesPLayers = Array.prototype.slice.call($('.square'));
       var results = movesPLayers.map(function (square) {
-        return square.innerHTML;
+        return square.innerText;
       });
 
       var winCombination = [
@@ -72,7 +72,7 @@ $(document).ready(function () {
   reset.on('click', function () {
     var movesPlayers = Array.prototype.slice.call($(".square"));
     movesPlayers.map(function (item) {
-      return item.innerHTML = "";
+      return item.innerText = "";
     });
     theWinnerIs.html('');
     theWinnerIs.css('display', "none");
