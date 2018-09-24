@@ -3,7 +3,7 @@ $(document).ready(function () {
   var playerX = 'X';
   var playerO = 'O';
   var currentTurn = 1;
-  var movesMade = 0;
+  var movesMadeOnBoard = 0;
 
   // var sqr = document.querySelectorAll('.square');
   var sqr = $(".square");
@@ -13,7 +13,7 @@ $(document).ready(function () {
   // sqr.addEventListener(function(){
   // })
   sqr.on('click', function (e) {
-    movesMade++;
+    movesMadeOnBoard++;
 
     if (currentTurn === 1) {
       event.target.innerHTML = playerX;
@@ -33,13 +33,13 @@ $(document).ready(function () {
 
 
   function checkIfSomeoneWin() {
-    if (movesMade > 4) {
-      var moves = Array.prototype.slice.call($('.square'));
-      var results = moves.map(function (square) {
+    if (movesMadeOnBoard > 4) {
+      var movesPLayers = Array.prototype.slice.call($('.square'));
+      var results = movesPLayers.map(function (square) {
         return square.innerHTML;
       });
 
-      var winningCombos = [
+      var winCombination = [
         [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
@@ -50,7 +50,7 @@ $(document).ready(function () {
         [2, 4, 6]
       ];
 
-      return winningCombos.find(function (combo) {
+      return winCombination.find(function (combo) {
         if (results[combo[0]] !== "" && results[combo[1]] !== ""
           && results[combo[2]] !== "" && results[combo[0]] === results[combo[1]]
           && results[combo[1]] === results[combo[2]]) {
@@ -69,9 +69,9 @@ $(document).ready(function () {
     theWinnerIs.html(winner + " Wins!");
   }
 
-  reset.on('click', function (e) {
-    var moves = Array.prototype.slice.call($(".square"));
-    moves.map(function (item) {
+  reset.on('click', function () {
+    var movesPlayers = Array.prototype.slice.call($(".square"));
+    movesPlayers.map(function (item) {
       return item.innerHTML = "";
     });
     theWinnerIs.html('');
